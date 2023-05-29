@@ -18,13 +18,13 @@ export class ExistConstraintTypeOrm implements ValidatorConstraintInterface {
         if (!value || !model) return false;
         const repository = this.dataSource.getRepository(model)
         try{
-
+            console.log("gggggggggg", [property], value)
             const record = await repository.findOne({
                 where: {
                     [property]: value,
                 },
             });
-            return !record === null;
+            return record!==null;
     
         } catch(e){
             console.error(e)

@@ -2,10 +2,15 @@
 import { IsUniqueTypeOrm } from 'src/customValidator/unique.decorator';
 import { IsNotEmpty } from 'class-validator';
 import { IsExistTypeOrm } from 'src/customValidator/exist.validator';
-
-export class UpdateUserDto {
+import { PartialType } from '@nestjs/mapped-types';
+import { CreateUserDto } from './create-user.dto';
+import { I18nContext, i18nValidationMessage } from 'nestjs-i18n';
+import {I18nTranslations} from '../../generated/i18n.generated'
+export class UpdateUserDto  extends PartialType(CreateUserDto){
     @IsNotEmpty()
-    @IsExistTypeOrm('user','idUser')
+    @IsExistTypeOrm('user','idUser',{
+        message: i18nValidationMessage<I18nTranslations>('validation.IsExist', { message: 'COOL' }),
+      })
     idUser:string;
 
     @IsUniqueTypeOrm('user','email','idUser')
@@ -13,10 +18,4 @@ export class UpdateUserDto {
 
     @IsUniqueTypeOrm('user','phone','idUser')
     phone:string;
-    
-    @IsNotEmpty()
-    nom:string;
-
-    @IsNotEmpty()
-    prenom:string;
 }

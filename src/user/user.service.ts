@@ -20,12 +20,10 @@ export class UserService {
 
   }
 
-  async update(id: string, updateUserDto: UpdateUserDto):Promise<User> {
-    if (id === updateUserDto.idUser) {
-      // delete updateUserDto.idUser;
-      console.log(updateUserDto)
-      // return updateUserDto
-      return await this.dataSource.getRepository(User).save({idUser:id,...updateUserDto});
+  async update(id: string, updateUserDto: UpdateUserDto) {
+    if (id == updateUserDto.idUser) {
+      const user = this.dataSource.getRepository(User).create(updateUserDto)
+      return await this.dataSource.getRepository(User).save({  ...user,idUser:id});
     }
 
   }
