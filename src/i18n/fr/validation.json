@@ -110,6 +110,6 @@
     "IsNumber": "le champ {property} doit être un nombre",
     "IsObject": "le champ {property} doit être un objet",
     "IsString": "le champ {property} doit être une chaîne",
-    "IsUnique":"le champ {property} doit être unique",
-    "IsExist":"le champ {property} doit exister dans la table {constraints[0]}"
+    "IsUnique":"la valeur du champ {property} doit être unique",
+    "IsExist":"la valeur du champ {property} doit exister dans la table {constraints.0}"
 }
